@@ -1,0 +1,453 @@
+{
+  "schema_version": "m5-evaluation-1",
+  "started_at": "2026-10-16T19:42:38.465932+00:00",
+  "complete": true,
+  "provenance": "AI-authored development dataset. Independent human-authored 30-question benchmark and human answer-support review are pending; not a release benchmark.",
+  "human_authored": false,
+  "dataset_digest": "d04f331333a21f49ff697aa2fd905c2e5c74d9a8492fc86a3a99ec9e26e15bb7",
+  "source_sha256": {
+    "admin_security.md": "0789bd5b9d1426554cfccec7c2c1076ab51f64a9a3b14484e0beb3d92cbcaf9e",
+    "api_reference.md": "955fa581d06d7ed6170c07172c5df60f4d21c2fda00ce0d8625ea1c2c33e81c4",
+    "configuration.md": "ec00f5436d87d80ef95c2db4c0beca4de21abfaa75eb98f99c905f6e5e1181ea",
+    "release_notes.md": "2702cc68beaf69ef791642a55843675a330622994c850096b6de961861085dd8",
+    "legacy_configuration.md": "af84125f88a056dcf08c99d16716000a083071b285d6061254c2ff660e93b318",
+    "user_guide.docx": "3279044a5ac3abb90e79e62ee3d8b1ab060e7b7be180207c3a2fb9ae309c9727",
+    "troubleshooting.pdf": "5c40e49a5f21f848a43b617ac28c8ec44fbda9a8de1479d1cbeb6fc19349a82b",
+    "faq.txt": "de720299954d4f63ae5453a49656e58a90dd0666e564b2409f322c72c83c8348"
+  },
+  "settings": {
+    "schema_version": "1.0",
+    "max_file_bytes": 10485760,
+    "max_documents": 100,
+    "max_extracted_chars": 1000000,
+    "max_collection_chars": 10000000,
+    "max_sections": 2000,
+    "max_pdf_pages": 500,
+    "max_docx_entries": 2000,
+    "max_docx_expanded_bytes": 41943040,
+    "max_passages_per_document": 2000,
+    "max_collection_passages": 10000,
+    "chunking": {
+      "max_words": 500,
+      "max_chars": 4000,
+      "overlap_words": 50
+    },
+    "retrieval": {
+      "model": "embeddinggemma:latest",
+      "host": "127.0.0.1",
+      "port": 11434,
+      "timeout_seconds": 120,
+      "batch_size": 8,
+      "candidate_count": 20,
+      "top_k": 5,
+      "rrf_k": 60,
+      "max_query_chars": 2000
+    },
+    "generation": {
+      "model": "qwen3-vl:4b-instruct",
+      "timeout_seconds": 240,
+      "context_passages": 12,
+      "max_context_chars": 18000,
+      "max_output_chars": 24000,
+      "num_ctx": 32768,
+      "num_predict": 2048
+    }
+  },
+  "platform": "macOS-26.7.1-x86_64-i386-64bit",
+  "python": "3.12.15",
+  "embedding_identity": {
+    "schema_version": "1.0",
+    "model": "embeddinggemma:latest",
+    "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1",
+    "dimensions": 768,
+    "adapter_version": "ollama-embed-1",
+    "truncate": false
+  },
+  "generation_identity": {
+    "schema_version": "1.0",
+    "model": "qwen3-vl:4b-instruct",
+    "digest": "ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+    "adapter_version": "ollama-chat-1"
+  },
+  "collection_id": "548e0a67-3aa1-47e5-bebf-c2022f600132",
+  "generation": "kb_3d63a9156d334d2db9cd3d66938acc49",
+  "passages": 31,
+  "processing": {
+    "accepted": 8,
+    "attempted": 8,
+    "success_rate": 1.0
+  },
+  "planned_cases": [
+    "RQ-009",
+    "RQ-025",
+    "RQ-031"
+  ],
+  "retrieval": [
+    {
+      "id": "RQ-009",
+      "category": "paraphrase",
+      "modes": {
+        "keyword": {
+          "relevant_count": 1,
+          "retrieved_relevant": 1,
+          "recall_at_k": 1.0,
+          "hit_at_k": true,
+          "passage_ids": [
+            "ac677804-7d50-5148-975f-e9b2f650a18f",
+            "8fc20c28-8f85-5d5a-b22c-1d4563e3d35a",
+            "f1fef200-6dbd-5707-af48-1a356c549aa6",
+            "1f11a58b-b393-5f3d-af8b-497999b1e701",
+            "793c34df-2246-52c4-8db4-c36d01ac8d37"
+          ],
+          "elapsed_ms": 6.53
+        },
+        "semantic": {
+          "relevant_count": 1,
+          "retrieved_relevant": 1,
+          "recall_at_k": 1.0,
+          "hit_at_k": true,
+          "passage_ids": [
+            "ac677804-7d50-5148-975f-e9b2f650a18f",
+            "f1fef200-6dbd-5707-af48-1a356c549aa6",
+            "e31ca4ea-797a-50d7-acb5-0e3c3af0997c",
+            "c1c610b5-5a83-5ace-b19c-be993bbac23d",
+            "3a5fb934-97ca-5faa-a063-e77529ad0cb3"
+          ],
+          "elapsed_ms": 91.97
+        },
+        "hybrid": {
+          "relevant_count": 1,
+          "retrieved_relevant": 1,
+          "recall_at_k": 1.0,
+          "hit_at_k": true,
+          "passage_ids": [
+            "ac677804-7d50-5148-975f-e9b2f650a18f",
+            "f1fef200-6dbd-5707-af48-1a356c549aa6",
+            "8fc20c28-8f85-5d5a-b22c-1d4563e3d35a",
+            "dad47fb5-4d44-5200-99f8-04d1dedf2ca6",
+            "e31ca4ea-797a-50d7-acb5-0e3c3af0997c"
+          ],
+          "elapsed_ms": 91.53
+        }
+      }
+    },
+    {
+      "id": "RQ-025",
+      "category": "unsupported",
+      "modes": {
+        "keyword": {
+          "relevant_count": 0,
+          "retrieved_relevant": 0,
+          "recall_at_k": null,
+          "hit_at_k": null,
+          "passage_ids": [
+            "b0edb29c-ca03-5615-b289-1a25691d25f9",
+            "8fc20c28-8f85-5d5a-b22c-1d4563e3d35a",
+            "4b343506-f943-5501-af23-d2708d205e36",
+            "9977a78f-d3ea-513e-a305-89c580985604",
+            "f9d67e39-a3c4-5840-8a73-546f674e2fea"
+          ],
+          "elapsed_ms": 6.8
+        },
+        "semantic": {
+          "relevant_count": 0,
+          "retrieved_relevant": 0,
+          "recall_at_k": null,
+          "hit_at_k": null,
+          "passage_ids": [
+            "b0edb29c-ca03-5615-b289-1a25691d25f9",
+            "77237e9d-2a47-5344-ad04-238a5edd8c26",
+            "dad47fb5-4d44-5200-99f8-04d1dedf2ca6",
+            "e31ca4ea-797a-50d7-acb5-0e3c3af0997c",
+            "1f11a58b-b393-5f3d-af8b-497999b1e701"
+          ],
+          "elapsed_ms": 102.44
+        },
+        "hybrid": {
+          "relevant_count": 0,
+          "retrieved_relevant": 0,
+          "recall_at_k": null,
+          "hit_at_k": null,
+          "passage_ids": [
+            "b0edb29c-ca03-5615-b289-1a25691d25f9",
+            "4b343506-f943-5501-af23-d2708d205e36",
+            "9977a78f-d3ea-513e-a305-89c580985604",
+            "00b37b71-675d-533d-88cd-ce29595a5d7d",
+            "8fc20c28-8f85-5d5a-b22c-1d4563e3d35a"
+          ],
+          "elapsed_ms": 104.84
+        }
+      }
+    },
+    {
+      "id": "RQ-031",
+      "category": "conflict",
+      "modes": {
+        "keyword": {
+          "relevant_count": 2,
+          "retrieved_relevant": 2,
+          "recall_at_k": 1.0,
+          "hit_at_k": true,
+          "passage_ids": [
+            "e40e31ac-75e3-5640-8273-98f45bed72ba",
+            "f9d67e39-a3c4-5840-8a73-546f674e2fea",
+            "e31d9d30-437a-523e-b250-2319fb59663e",
+            "3a5fb934-97ca-5faa-a063-e77529ad0cb3",
+            "e31ca4ea-797a-50d7-acb5-0e3c3af0997c"
+          ],
+          "elapsed_ms": 6.45
+        },
+        "semantic": {
+          "relevant_count": 2,
+          "retrieved_relevant": 2,
+          "recall_at_k": 1.0,
+          "hit_at_k": true,
+          "passage_ids": [
+            "e31d9d30-437a-523e-b250-2319fb59663e",
+            "f9d67e39-a3c4-5840-8a73-546f674e2fea",
+            "e40e31ac-75e3-5640-8273-98f45bed72ba",
+            "77237e9d-2a47-5344-ad04-238a5edd8c26",
+            "3a5fb934-97ca-5faa-a063-e77529ad0cb3"
+          ],
+          "elapsed_ms": 107.16
+        },
+        "hybrid": {
+          "relevant_count": 2,
+          "retrieved_relevant": 2,
+          "recall_at_k": 1.0,
+          "hit_at_k": true,
+          "passage_ids": [
+            "e31d9d30-437a-523e-b250-2319fb59663e",
+            "e40e31ac-75e3-5640-8273-98f45bed72ba",
+            "f9d67e39-a3c4-5840-8a73-546f674e2fea",
+            "3a5fb934-97ca-5faa-a063-e77529ad0cb3",
+            "77237e9d-2a47-5344-ad04-238a5edd8c26"
+          ],
+          "elapsed_ms": 114.51
+        }
+      }
+    }
+  ],
+  "answers": [
+    {
+      "id": "RQ-009",
+      "category": "paraphrase",
+      "question": "How can an administrator require a second factor when signing in?",
+      "expected_status": "answered",
+      "status": "answered",
+      "status_matches": true,
+      "answer_digest": "a22ac33fdfd5e1766a3ab9587435ad987d1608e40e1d028ad4a6a073bdc13429",
+      "citations": 1,
+      "valid_citations": 1,
+      "missing_evidence_references": 0,
+      "answer": {
+        "schema_version": "1.0",
+        "answer_id": "9dec9b13-74c8-4370-9f2b-7949bb920d2c",
+        "status": "answered",
+        "text": "To require a second factor when signing in, an administrator must set require_mfa=true in the Administration > Security > Authentication section of FleetOps 2.0.",
+        "claims": [
+          {
+            "schema_version": "1.0",
+            "text": "To require a second factor when signing in, an administrator must set require_mfa=true in the Administration > Security > Authentication section of FleetOps 2.0.",
+            "evidence": [
+              {
+                "schema_version": "1.0",
+                "passage_id": "ac677804-7d50-5148-975f-e9b2f650a18f",
+                "quote": "For FleetOps 2.0, open Administration > Security > Authentication and set require_mfa=true. New administrator sessions must complete the configured second-factor enrollment."
+              }
+            ]
+          }
+        ],
+        "conflicts": [],
+        "citations": [
+          {
+            "schema_version": "1.0",
+            "passage": {
+              "schema_version": "1.0",
+              "passage_id": "ac677804-7d50-5148-975f-e9b2f650a18f",
+              "text": "## Multi-factor authentication\n\nFor FleetOps 2.0, open Administration > Security > Authentication and set require_mfa=true. New administrator sessions must complete the configured second-factor enrollment. Existing active sessions keep their original expiry until revoked. The sample does not establish recovery-code regeneration behavior.\n\n",
+              "location": {
+                "schema_version": "1.0",
+                "document_id": "0d6037e7-7169-5a1f-a132-d3a130d579b4",
+                "document_version": "2.0",
+                "section_id": "b051a46c-0064-50f2-a509-c992b1e173b2",
+                "heading": "Multi-factor authentication",
+                "page": null,
+                "char_start": 0,
+                "char_end": 341,
+                "offset_basis": "extracted_section",
+                "decoded_char_start": 382,
+                "decoded_char_end": 723
+              },
+              "ordinal": 2,
+              "word_count": 41,
+              "overlap_chars": 0,
+              "chunking_fingerprint": "6a9445a3d8029df12d8f43c9f466886208108a452a47458ba8e9d35e0996f1cb"
+            },
+            "title": "FleetOps Administrator Security Guide",
+            "filename": "admin_security.md",
+            "content_hash": "sha256:0789bd5b9d1426554cfccec7c2c1076ab51f64a9a3b14484e0beb3d92cbcaf9e",
+            "quote": "For FleetOps 2.0, open Administration > Security > Authentication and set require_mfa=true. New administrator sessions must complete the configured second-factor enrollment.",
+            "quote_start": 32,
+            "quote_end": 205
+          }
+        ],
+        "generation": "kb_3d63a9156d334d2db9cd3d66938acc49",
+        "model": {
+          "schema_version": "1.0",
+          "model": "qwen3-vl:4b-instruct",
+          "digest": "ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+          "adapter_version": "ollama-chat-1"
+        },
+        "support_review": {
+          "schema_version": "1.0",
+          "supported_claims": [
+            0
+          ],
+          "confirmed_conflicts": [],
+          "question_fully_addressed": true,
+          "relevant_evidence": true,
+          "unresolved_conflict": false
+        },
+        "reason": "support_review_passed",
+        "review_required": true,
+        "context_passages": 12,
+        "omitted_passages": 0,
+        "elapsed_ms": 72452.37,
+        "prompt_version": "grounded-4"
+      }
+    },
+    {
+      "id": "RQ-025",
+      "category": "unsupported",
+      "question": "What are the accepted TLS cipher suites?",
+      "expected_status": "insufficient_evidence",
+      "status": "insufficient_evidence",
+      "status_matches": true,
+      "answer_digest": "4c8aed56d9542727b573ce584ee807bbff223a39d02d00fccccb369bb8d4764c",
+      "citations": 0,
+      "valid_citations": 0,
+      "missing_evidence_references": 0,
+      "answer": {
+        "schema_version": "1.0",
+        "answer_id": "ed383ea2-3782-4953-9818-ee191be34887",
+        "status": "insufficient_evidence",
+        "text": "I couldn't find sufficient information in the indexed documentation to answer that question.",
+        "claims": [],
+        "conflicts": [],
+        "citations": [],
+        "generation": "kb_3d63a9156d334d2db9cd3d66938acc49",
+        "model": {
+          "schema_version": "1.0",
+          "model": "qwen3-vl:4b-instruct",
+          "digest": "ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+          "adapter_version": "ollama-chat-1"
+        },
+        "support_review": null,
+        "reason": "missing_evidence",
+        "review_required": true,
+        "context_passages": 12,
+        "omitted_passages": 0,
+        "elapsed_ms": 5656.69,
+        "prompt_version": "grounded-4"
+      }
+    },
+    {
+      "id": "RQ-031",
+      "category": "conflict",
+      "question": "What is the default session_idle_minutes? Both legacy and current guides are present and the deployed version is unknown.",
+      "expected_status": "conflicting_evidence",
+      "status": "validation_failed",
+      "status_matches": false,
+      "answer_digest": "7a5f7e71e1018234d33f838671679c1aad8e27078dc8da39eb7f450f30e7daa2",
+      "citations": 0,
+      "valid_citations": 0,
+      "missing_evidence_references": 0,
+      "answer": {
+        "schema_version": "1.0",
+        "answer_id": "a945bfb3-48e0-4684-a864-f7c315b2f650",
+        "status": "validation_failed",
+        "text": "I couldn't establish adequate support for an answer. Inspect the retrieved sources or revise the question.",
+        "claims": [],
+        "conflicts": [],
+        "citations": [],
+        "generation": "kb_3d63a9156d334d2db9cd3d66938acc49",
+        "model": {
+          "schema_version": "1.0",
+          "model": "qwen3-vl:4b-instruct",
+          "digest": "ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+          "adapter_version": "ollama-chat-1"
+        },
+        "support_review": null,
+        "reason": "citation_or_snapshot_invalid",
+        "review_required": true,
+        "context_passages": 4,
+        "omitted_passages": 8,
+        "elapsed_ms": 74353.11,
+        "prompt_version": "grounded-4"
+      }
+    }
+  ],
+  "offline_verification": {
+    "scope": "Python socket audit events in this evaluator; not an OS air-gap or separate Ollama process",
+    "allowed_loopback_connections": 131,
+    "blocked_external_events": 0
+  },
+  "retrieval_metrics": {
+    "keyword": {
+      "k": 5,
+      "targeted_cases": 2,
+      "macro_recall_at_k": 1.0,
+      "target_hit_rate_at_k": 1
+    },
+    "semantic": {
+      "k": 5,
+      "targeted_cases": 2,
+      "macro_recall_at_k": 1.0,
+      "target_hit_rate_at_k": 1
+    },
+    "hybrid": {
+      "k": 5,
+      "targeted_cases": 2,
+      "macro_recall_at_k": 1.0,
+      "target_hit_rate_at_k": 1
+    }
+  },
+  "answer_metrics": {
+    "attempted": 3,
+    "status_counts": {
+      "answered": 1,
+      "insufficient_evidence": 1,
+      "validation_failed": 1
+    },
+    "supported_answer_coverage": {
+      "numerator": 1,
+      "denominator": 1,
+      "rate": 1.0
+    },
+    "correct_abstention_rate": {
+      "numerator": 1,
+      "denominator": 1,
+      "rate": 1.0
+    },
+    "false_answer_frequency_on_unanswerable": {
+      "numerator": 0,
+      "denominator": 1,
+      "rate": 0.0
+    },
+    "conflict_status_rate": {
+      "numerator": 0,
+      "denominator": 1,
+      "rate": 0.0
+    },
+    "citation_validity_rate": {
+      "numerator": 1,
+      "denominator": 1,
+      "rate": 1.0
+    },
+    "missing_evidence_references": 0,
+    "answer_support_accuracy": null,
+    "support_note": "Requires independent human review bound to each exact answer digest; status match and same-model support checks are not support accuracy."
+  },
+  "finished_at": "2026-10-16T19:45:11.631520+00:00"
+}

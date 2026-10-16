@@ -1,0 +1,37 @@
+{
+  "fictional": true,
+  "documents": [
+    {
+      "filename": "admin_security.md",
+      "version": "2.0"
+    },
+    {
+      "filename": "api_reference.md",
+      "version": "2.0"
+    },
+    {
+      "filename": "configuration.md",
+      "version": "2.0"
+    },
+    {
+      "filename": "release_notes.md",
+      "version": "2.0"
+    },
+    {
+      "filename": "legacy_configuration.md",
+      "version": "1.0"
+    },
+    {
+      "filename": "user_guide.docx",
+      "version": "2.0"
+    },
+    {
+      "filename": "troubleshooting.pdf",
+      "version": "2.0"
+    },
+    {
+      "filename": "faq.txt",
+      "version": "2.0"
+    }
+  ]
+}

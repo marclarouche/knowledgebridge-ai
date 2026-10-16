@@ -1,0 +1,33 @@
+schema_version: "1.0"
+max_file_bytes: 10485760
+max_documents: 100
+max_extracted_chars: 1000000
+max_collection_chars: 10000000
+max_sections: 2000
+max_pdf_pages: 500
+max_docx_entries: 2000
+max_docx_expanded_bytes: 41943040
+max_passages_per_document: 2000
+max_collection_passages: 10000
+chunking:
+  max_words: 500
+  max_chars: 4000
+  overlap_words: 50
+retrieval:
+  model: embeddinggemma:latest
+  host: 127.0.0.1
+  port: 11434
+  timeout_seconds: 120
+  batch_size: 8
+  candidate_count: 20
+  top_k: 5
+  rrf_k: 60
+  max_query_chars: 2000
+generation:
+  model: qwen3-vl:4b-instruct
+  timeout_seconds: 240
+  context_passages: 12
+  max_context_chars: 18000
+  max_output_chars: 24000
+  num_ctx: 32768
+  num_predict: 2048
