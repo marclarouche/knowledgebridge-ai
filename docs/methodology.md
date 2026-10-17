@@ -24,7 +24,7 @@ Default candidate count is 20 per method and final result count is 5. RRF ties u
 
 ## Development probes
 
-`retrieval_questions.json` contains 30 AI-authored probes: 24 designated source targets and six unsupported/unrelated questions. The reproducible script measures whether at least one designated filename/text target occurs in the top five. It does not measure exhaustive Recall@k, answer support, correct abstention or factual accuracy. Unsupported questions have no success label; their retrieved neighbors must not be interpreted as answers. The independent human-authored benchmark and wider evaluation remain Milestone 5 work.
+`retrieval_questions.json` contains 30 AI-authored probes: 24 designated source targets and six unsupported/unrelated questions. The reproducible script measures whether at least one designated filename/text target occurs in the top five. It does not measure exhaustive Recall@k, answer support, correct abstention or factual accuracy. Unsupported questions have no success label; their retrieved neighbors must not be interpreted as answers. Milestone 5 evaluation results are recorded below; the independent human-authored benchmark remains a release blocker.
 
 
 ## Milestone 3 evidence decisions
@@ -41,3 +41,7 @@ Deletion builds remaining active search data from retained vectors, preserving q
 ## Milestone 5 evaluation
 
 See [evaluation methodology](evaluation.md) for exact metric denominators, isolated local-model reproduction, offline verification scope and output-bound human review. The AI-authored development cases do not satisfy the PRD human-authorship requirement. See [acceptance evidence](acceptance.md) for P0 checks and release blockers.
+
+## Walkthrough citation follow-up
+
+The walkthrough exposed a shortened/reconstructed YAML quote and a mistyped PDF passage ID. The new `grounded-5` generation schema enumerates only IDs in the supplied bounded context, while runtime validation still rejects nonexistent/out-of-context IDs, modified or noncontiguous quotes, stale sources and stale snapshots. Instructions clarify explicit version comparisons and exact field/prose quotation. Citation failures now return specific safe reason codes without exposing rejected drafts or logging source text. Historical Phase 5 metrics remain unchanged; see the [targeted investigation](walkthrough_validation_investigation.md) for follow-up observations and their limits.

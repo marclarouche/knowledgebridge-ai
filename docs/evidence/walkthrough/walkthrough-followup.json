@@ -1,0 +1,156 @@
+{
+  "provenance": "Targeted fictional development reproductions following the guided walkthrough; not an independent human benchmark.",
+  "complete": true,
+  "cases": [
+    {
+      "question": "What is the default value of require_mfa in FleetOps 1.0 versus 2.0?",
+      "answer": {
+        "schema_version": "1.0",
+        "answer_id": "baf5bb87-281b-4811-b862-25498dc938c0",
+        "status": "insufficient_evidence",
+        "text": "I couldn't find sufficient information in the indexed documentation to answer that question.",
+        "claims": [],
+        "conflicts": [],
+        "citations": [],
+        "generation": "kb_20c0f44112d9473c92029a30699c7b15",
+        "model": {
+          "schema_version": "1.0",
+          "model": "qwen3-vl:4b-instruct",
+          "digest": "ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+          "adapter_version": "ollama-chat-1"
+        },
+        "support_review": {
+          "schema_version": "1.0",
+          "supported_claims": [],
+          "confirmed_conflicts": [
+            0
+          ],
+          "question_fully_addressed": false,
+          "relevant_evidence": false,
+          "unresolved_conflict": true
+        },
+        "reason": "support_incomplete",
+        "review_required": true,
+        "context_passages": 4,
+        "omitted_passages": 8,
+        "elapsed_ms": 118522.95,
+        "prompt_version": "grounded-5"
+      }
+    },
+    {
+      "question": "According to the FleetOps Troubleshooting Guide, what does AUTH_REQUIRED indicate?",
+      "answer": {
+        "schema_version": "1.0",
+        "answer_id": "de646ca1-d205-43be-ae3e-1dcdc3f5e018",
+        "status": "answered",
+        "text": "AUTH_REQUIRED indicates that the API request did not include a valid workspace token.",
+        "claims": [
+          {
+            "schema_version": "1.0",
+            "text": "AUTH_REQUIRED indicates that the API request did not include a valid workspace token.",
+            "evidence": [
+              {
+                "schema_version": "1.0",
+                "passage_id": "00b37b71-675d-533d-88cd-ce29595a5d7d",
+                "quote": "AUTH_REQUIRED\nThe API request did not include a valid workspace token."
+              }
+            ]
+          }
+        ],
+        "conflicts": [],
+        "citations": [
+          {
+            "schema_version": "1.0",
+            "passage": {
+              "schema_version": "1.0",
+              "passage_id": "00b37b71-675d-533d-88cd-ce29595a5d7d",
+              "text": "Authentication and evidence gaps\n\n\nVersion 2.0. FICTIONAL DEMONSTRATION MATERIAL.\n\nAUTH_REQUIRED\nThe API request did not include a valid workspace token.\nThe API Reference describes the required Authorization header.\nThis collection does not specify token rotation or recovery-code regeneration.\n\nUnknown error codes\nFor an unlisted code, ask the documentation owner. The available sample\ndoes not establish a definitive cause or corrective procedure.",
+              "location": {
+                "schema_version": "1.0",
+                "document_id": "ab397208-63ac-5441-b1fa-de6f1d92f359",
+                "document_version": "2.0",
+                "section_id": "205b4d54-5322-5d6e-9462-ac4a3602f707",
+                "heading": null,
+                "page": 2,
+                "char_start": 0,
+                "char_end": 451,
+                "offset_basis": "extracted_section",
+                "decoded_char_start": null,
+                "decoded_char_end": null
+              },
+              "ordinal": 1,
+              "word_count": 61,
+              "overlap_chars": 0,
+              "chunking_fingerprint": "6a9445a3d8029df12d8f43c9f466886208108a452a47458ba8e9d35e0996f1cb"
+            },
+            "title": "FleetOps Troubleshooting Guide",
+            "filename": "troubleshooting.pdf",
+            "content_hash": "sha256:5c40e49a5f21f848a43b617ac28c8ec44fbda9a8de1479d1cbeb6fc19349a82b",
+            "quote": "AUTH_REQUIRED\nThe API request did not include a valid workspace token.",
+            "quote_start": 83,
+            "quote_end": 153
+          }
+        ],
+        "generation": "kb_20c0f44112d9473c92029a30699c7b15",
+        "model": {
+          "schema_version": "1.0",
+          "model": "qwen3-vl:4b-instruct",
+          "digest": "ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+          "adapter_version": "ollama-chat-1"
+        },
+        "support_review": {
+          "schema_version": "1.0",
+          "supported_claims": [
+            0
+          ],
+          "confirmed_conflicts": [],
+          "question_fully_addressed": true,
+          "relevant_evidence": true,
+          "unresolved_conflict": false
+        },
+        "reason": "support_review_passed",
+        "review_required": true,
+        "context_passages": 3,
+        "omitted_passages": 9,
+        "elapsed_ms": 48099.98,
+        "prompt_version": "grounded-5"
+      }
+    },
+    {
+      "question": "How can I regenerate recovery codes?",
+      "answer": {
+        "schema_version": "1.0",
+        "answer_id": "8db4f402-6890-422b-9cb3-bc7b7568c75b",
+        "status": "insufficient_evidence",
+        "text": "I couldn't find sufficient information in the indexed documentation to answer that question.",
+        "claims": [],
+        "conflicts": [],
+        "citations": [],
+        "generation": "kb_20c0f44112d9473c92029a30699c7b15",
+        "model": {
+          "schema_version": "1.0",
+          "model": "qwen3-vl:4b-instruct",
+          "digest": "ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b",
+          "adapter_version": "ollama-chat-1"
+        },
+        "support_review": {
+          "schema_version": "1.0",
+          "supported_claims": [],
+          "confirmed_conflicts": [
+            0
+          ],
+          "question_fully_addressed": false,
+          "relevant_evidence": false,
+          "unresolved_conflict": true
+        },
+        "reason": "support_incomplete",
+        "review_required": true,
+        "context_passages": 12,
+        "omitted_passages": 0,
+        "elapsed_ms": 149161.99,
+        "prompt_version": "grounded-5"
+      }
+    }
+  ],
+  "message_provenance": "These are recorded live-probe outputs. The current UI now distinguishes support_incomplete from missing_evidence; no historical output is rewritten here."
+}

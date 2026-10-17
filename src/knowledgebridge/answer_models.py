@@ -89,4 +89,4 @@ class AnswerRecord(Record):
     context_passages: int = 0
     omitted_passages: int = 0
     elapsed_ms: float = 0
-    prompt_version: Literal["grounded-4"] = "grounded-4"
+    prompt_version: Literal["grounded-4", "grounded-5"] = "grounded-5"

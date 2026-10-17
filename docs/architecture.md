@@ -4,6 +4,33 @@ Streamlit (`app.py`) owns presentation and session state. `src/knowledgebridge` 
 
 Flow: bounded upload bytes → parser → exact source sections/passages → persistent library collection → explicit index build → local Ollama vectors → staged Chroma generation → atomic SQLite source/FTS/active-pointer transaction → keyword/semantic/hybrid passage retrieval.
 
+## System diagram
+
+```mermaid
+flowchart TD
+    User[Single user / loopback browser] --> UI[Streamlit presentation]
+    Files[Untrusted TXT / MD / DOCX / PDF bytes] --> Parse[Bounded extraction and exact-slice chunking]
+    UI --> Parse
+    Parse --> Library[Saved library / pending imports]
+    Library --> Stage[Explicit build / replacement staging]
+    Stage --> Embed[Local Ollama embedding model]
+    Embed --> Vectors[Embedded Chroma immutable generations]
+    Stage --> Activate[Revision-checked SQLite activation]
+    Activate --> Catalog[Source catalog / FTS5 / active pointer]
+    UI --> Retrieve[Keyword / semantic / hybrid retrieval]
+    Catalog --> Retrieve
+    Vectors --> Retrieve
+    Retrieve --> Context[Bounded current source passages]
+    Context --> Generate[Local Ollama draft and support review]
+    Generate --> Validate[Exact citations / status / freshness gates]
+    Catalog --> Validate
+    Validate --> UI
+    UI --> Explorer[Source Explorer / current quotes and context]
+    Catalog --> Explorer
+```
+
+Ollama is a separate process reached only through the configured literal loopback endpoint. Chroma is embedded, with explicit vectors and no Chroma HTTP server. SQLite activation is atomic; the two stores do not share a distributed transaction. Validation can withhold failures but cannot prove semantic support. The evaluator's Python offline guard is scoped separately from OS or Ollama network controls.
+
 ## Components
 
 - `models.py`, `parsers.py`, `chunker.py`, `ingestion.py`: validated source identities, extraction, bounded exact windows and atomic import.

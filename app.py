@@ -1,4 +1,4 @@
-"""Streamlit presentation for local document ingestion and Milestone 4 library management."""
+"""Streamlit presentation for local document libraries and source-grounded answers."""
 
 import os
 from pathlib import Path
@@ -79,7 +79,7 @@ def main() -> None:
     manifest: IndexManifest | None = None
     st.set_page_config(page_title="KnowledgeBridge AI", layout="wide")
     st.title("KnowledgeBridge AI")
-    st.caption("Milestone 4 · Persistent library management and source inspection")
+    st.caption("Local document search · Source-grounded answers")
     st.caption(
         "Collections and extracted imports are saved locally. Build an index to search pending changes. Replacement and deletion update active retrieval; original uploads are not retained."
     )
@@ -256,7 +256,7 @@ def main() -> None:
                     except RetrievalError as error:
                         st.error(str(error))
         st.info(
-            "All FleetOps material is fictional. Versions 1.0 and 2.0 deliberately disagree; this milestone displays sources without deciding which is authoritative."
+            "All FleetOps material is fictional. Versions 1.0 and 2.0 deliberately disagree; source recency alone does not establish authority."
         )
     elif view == "Settings and Diagnostics":
         st.subheader("Settings and Diagnostics")

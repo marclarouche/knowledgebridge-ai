@@ -84,6 +84,10 @@ def test_supported_answer_has_resolved_exact_quotes(indexed):
     assert citation.title == collection.documents[0].title
     assert citation.passage.location.document_version == "2.0"
     assert generator.calls[0][1]["question"] == "What causes AUTH_REQUIRED?"
+    supplied = {p["passage_id"] for p in generator.calls[0][1]["passages"]}
+    allowed = generator.calls[0][2]["$defs"]["EvidenceRef"]["properties"]["passage_id"]["enum"]
+    assert set(allowed) == supplied
+    assert result.prompt_version == "grounded-5"
 
 
 @pytest.mark.parametrize(
@@ -131,6 +135,14 @@ def test_invalid_or_stale_citations_never_display_draft(indexed, change):
         repository, collection.collection_id, "AUTH_REQUIRED", Settings(), FakeEmbedder(), generator
     )
     assert result.status == "validation_failed" and not result.claims and not result.citations
+    assert (
+        result.reason
+        == {
+            "fake_id": "citation_outside_context",
+            "invented_quote": "citation_quote_mismatch",
+            "stale_snapshot": "snapshot_changed",
+        }[change]
+    )
     assert len(generator.calls) == 1
 
 
@@ -249,6 +261,9 @@ def test_separate_review_rejects_unsupported_partial_or_conflicted_answers(
         FixtureGenerator(claim_draft(collection), review),
     )
     assert result.status == expected and not result.claims and not result.citations
+    if result.reason == "support_incomplete":
+        assert "answer review" in result.text
+        assert "couldn't find sufficient information" not in result.text
 
 
 @pytest.mark.parametrize("fully_addressed", [True, False])
@@ -507,3 +522,91 @@ def test_identifier_context_focus_preserves_matching_hits_and_top_complements(in
     focused = focus_context(hits, "page_size")
     assert all(h in focused for h in hits[:2])
     assert any("page_size" in h.passage.text for h in focused)
+
+
+@pytest.mark.parametrize("omit_lines", [True, False])
+def test_yaml_quote_must_preserve_intervening_lines(tmp_path, omit_lines):
+    from knowledgebridge.ingestion import ingest
+    from knowledgebridge.models import KnowledgeCollection
+
+    source = (
+        "# Authentication\n\n```yaml\nrequire_mfa: true\n"
+        "session_idle_minutes: 30\napi_page_size: 100\n```\n\n"
+        "These are documented version 2.0 defaults.\n"
+    )
+    collection, imported = ingest(
+        KnowledgeCollection(title="Fictional YAML quote regression"),
+        source.encode(),
+        "config.md",
+        Settings(),
+        version="2.0",
+    )
+    assert imported.accepted
+    repository = IndexRepository(tmp_path / "index")
+    repository.build(collection, FakeEmbedder(), RetrievalSettings())
+    quote = (
+        "```yaml\nrequire_mfa: true\n```\n\nThese are documented version 2.0 defaults."
+        if omit_lines
+        else "require_mfa: true"
+    )
+    draft = {
+        "status": "answered",
+        "conflicts": [],
+        "claims": [
+            {
+                "text": "The configuration sets require_mfa to true.",
+                "evidence": [
+                    {"passage_id": collection.documents[0].passages[0].passage_id, "quote": quote}
+                ],
+            }
+        ],
+    }
+    generator = FixtureGenerator(draft)
+    answer = ask(
+        repository, collection.collection_id, "require_mfa", Settings(), FakeEmbedder(), generator
+    )
+    if omit_lines:
+        assert answer.reason == "citation_quote_mismatch"
+        assert answer.status == "validation_failed"
+        assert not answer.claims and not answer.citations
+        assert "exactly match" in answer.text
+        assert len(generator.calls) == 1
+    else:
+        assert answer.status == "answered"
+        citation = answer.citations[0]
+        assert citation.passage.text[citation.quote_start : citation.quote_end] == quote
+        assert len(generator.calls) == 2
+
+
+def test_request_id_enum_does_not_change_base_schema(indexed):
+    from knowledgebridge.answering import draft_schema
+
+    repository, collection = indexed
+    hits = retrieve(
+        repository, collection.collection_id, "token", "hybrid", RetrievalSettings(), FakeEmbedder()
+    ).hits
+    first = draft_schema(hits[:1])
+    second = draft_schema(hits[1:])
+    assert first["$defs"]["EvidenceRef"]["properties"]["passage_id"]["enum"] == [
+        hits[0].passage.passage_id
+    ]
+    assert (
+        hits[0].passage.passage_id
+        not in second["$defs"]["EvidenceRef"]["properties"]["passage_id"]["enum"]
+    )
+    assert (
+        "enum"
+        not in DraftAnswer.model_json_schema()["$defs"]["EvidenceRef"]["properties"]["passage_id"]
+    )
+
+
+def test_historical_prompt_version_remains_readable():
+    from knowledgebridge.answer_models import AnswerRecord
+
+    record = AnswerRecord(
+        status="validation_failed",
+        text="Withheld.",
+        reason="citation_or_snapshot_invalid",
+        prompt_version="grounded-4",
+    )
+    assert AnswerRecord.model_validate_json(record.model_dump_json()).prompt_version == "grounded-4"

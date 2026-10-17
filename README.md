@@ -1,17 +1,20 @@
 # KnowledgeBridge AI
 
-Milestone 4: persistent local document libraries, source-grounded answers and lifecycle management.
+Local technical-document search, source-grounded answers and inspectable citations.
+
+**Portfolio development release:** milestones 1–6 are documented; validated release remains blocked by human evaluation, model quality/latency and dependency findings.
 Python 3.12, Streamlit, Ollama, embedded Chroma and SQLite FTS5.
 
 ## Install and run
 
 ```sh
 uv sync --locked --group dev
-ollama pull embeddinggemma
+ollama pull embeddinggemma:latest
+ollama pull qwen3-vl:4b-instruct
 uv run streamlit run app.py --server.address 127.0.0.1 --server.port 8502
 ```
 
-Start the local Ollama service first. Generation defaults to the locally installed `qwen3-vl:4b-instruct`; install it separately if needed. The application never pulls models automatically. Open http://127.0.0.1:8502.
+Install Git, uv and Ollama, then start the local Ollama service before pulling the models. Python 3.12 is required. The application never pulls models automatically. Open http://127.0.0.1:8502.
 
 Installation requires downloads unless dependencies/models are cached. Normal operations use local disk and loopback Ollama only. Collection management, source inspection, keyword search and document deletion require no running model. Indexing and indexed-document replacement require the configured embedding model; answers require both embedding and generation models.
 
@@ -53,10 +56,23 @@ See [User guide](docs/user_guide.md), [Architecture](docs/architecture.md), [Sec
 
 CPU answer generation is slow and model drafts can over-abstain or fail exact citation validation. Same-model support review is fallible. Native document parsers are not hardened resource sandboxes; OCR and complex layouts are unsupported. Chroma 1.5.9 has four unique unresolved server/configuration advisories (five audit entries, one duplicated). The app uses only the embedded backend with explicit vectors and exposes no Chroma HTTP server; see the scoped assessment in security.md. The audit is not clean.
 
-Milestone 5 evaluation and Milestone 6 portfolio release remain pending. The complete end-to-end walkthrough will follow completion of the project.
+Milestone 5 testing and evaluation are complete with documented release blockers. Milestone 6 prepares the portfolio materials without clearing those blockers. Follow the [guided fictional walkthrough](docs/user_guide.md#guided-fictional-walkthrough).
 
 Milestone 4 verification and remaining limitations: [completion report](docs/milestone_4_completion.md).
 
 Milestone 5 evaluation tooling: [reproduction and metrics](docs/evaluation.md), [acceptance evidence and release blockers](docs/acceptance.md). The development dataset is AI-authored; independent human benchmark/support review remains pending.
 
 Milestone 5 results and release blockers: [completion report](docs/milestone_5_completion.md).
+
+## Portfolio and reproduction
+
+- [Installation and troubleshooting](docs/installation.md): locked Python 3.12 setup, local models, isolated demo storage and verification commands.
+- [User guide and walkthrough](docs/user_guide.md#guided-fictional-walkthrough): import, index, search, ask and inspect sources.
+- [Architecture diagram](docs/architecture.md#system-diagram) and [methodology](docs/methodology.md): component boundaries, source identity and ranking.
+- [Evaluation report](docs/evaluation_report.md) and [recorded sample answers](docs/sample_answers.md): development results, abstentions and failures.
+- [Screenshots](docs/screenshots/README.md) and [technical writing case study](docs/portfolio_case_study.md).
+- [Phase 6 completion and reproduction evidence](docs/milestone_6_completion.md).
+
+No human benchmark pass, production readiness or clean dependency audit is claimed. Original PRD and technology notes remain preserved.
+
+Walkthrough follow-up: [citation-validation investigation and fixes](docs/walkthrough_validation_investigation.md), with [disposable import/replacement samples](samples/library_walkthrough/README.md). Historical evaluation results remain unchanged.

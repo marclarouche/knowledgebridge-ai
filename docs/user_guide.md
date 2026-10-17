@@ -1,5 +1,7 @@
 # User guide
 
+For setup, see [installation](installation.md). This portfolio application has [open release blockers](acceptance.md#release-blockers); verify important claims in original sources.
+
 Knowledge Collections creates, opens, renames and deletes saved collections. Empty collections persist. Document Import saves extracted source records immediately; default limits are 10 MiB per file and 100 documents per collection. Original uploads are not retained. Duplicate byte content within a collection is skipped. The application never overwrites an original source file.
 
 Index and Search builds the active index from saved library sources. Pending imports survive restart but are not searchable until a successful build. The index status distinguishes not_indexed, indexed, stale (saved sources differ from active search) and failed (index inconsistency). Reindex selected document uses current chunk settings on retained sections and rebuilds the active snapshot, preserving any separate pending imports.
@@ -15,3 +17,24 @@ Source Explorer browses the active indexed documents and exact passages or resol
 Ask KnowledgeBridge uses the last active indexed snapshot. Citation and same-model support checks can miss errors; verify important claims in the originals. Missing evidence, unsupported/invalid drafts and local service failures produce withholding statuses. Confirmed conflicts show source versions without choosing authority from recency. CPU-only inference may be slow; generation defaults to a 240-second socket timeout per request. There is no disk conversation history; only the latest answer remains in session memory for source navigation.
 
 Settings and Diagnostics displays bounded configuration and cleanup controls. Edit config/knowledgebridge.yaml for subsequent import, chunking, retrieval and model settings. Embedding model changes require rebuilding; generation model changes do not alter stored embeddings. Keep original files because retained extracted sections cannot recover content omitted during parsing. DOCX table layout, PDF reading order, comments, tracked changes and images are limited; scanned PDFs require external OCR.
+
+## Guided fictional walkthrough
+
+1. Launch with the isolated storage override in the installation guide. In **Knowledge Collections**, select **Load FleetOps Demo collection**. The active collection should be **FleetOps Demo — fictional**, with eight documents and 31 passages under the default chunk settings. Imported sources persist immediately; an index is still needed for search.
+2. Open **Parsed Documents** or **Passage Explorer** to review extracted text and locations. Compare a PDF page and a DOCX section with their fictional originals. These views can be used before indexing and without Ollama.
+3. Open **Index and Search** and choose **Build / rebuild collection index**. The installed embedding model must be available. A successful build displays the saved passage count/model. Failed builds preserve the prior active index. If no index exists yet, retry after correcting the reported service/configuration issue.
+4. Search for `AUTH_REQUIRED`, using **keyword**, then **hybrid**, and select **Retrieve source passages**. Expand a result to inspect the exact passage, document version and section/page. Ranking is relevance evidence, not a confidence score. The API authentication passage should explain HTTP 401; results can differ with model/index changes.
+5. Open **Ask KnowledgeBridge**. Ask `What does AUTH_REQUIRED mean?` and select **Ask using saved sources**. CPU inference can be slow and results can fail validation or time out. If an answer is returned, read its quote and select **Inspect source** to open Source Explorer. Compare the full current passage with the source. The [recorded examples](sample_answers.md) show historical outputs, not promised responses.
+6. Ask `How can I regenerate recovery codes?` The fictional manuals omit this procedure. Expected evidence behavior is an insufficient-evidence response; a generation failure is a service failure, not a successful abstention. An unscoped version question can expose conflicting manuals, but the recorded live conflict probe failed. Do not assume robust conflict handling.
+7. In **Document Library**, inspect the document metadata and replacement/deletion controls. If exercising mutations, use only a disposable demo collection. Replacement must succeed before the old active source changes. Deletion has a source-specific confirmation and logical-deletion limits. Rebuild and ask again after index changes; an old citation should be treated as outdated.
+8. Reload the page to verify that the saved collection and active index reopen. Answers remain session-only and have no disk history. Inspect **Settings and Diagnostics** for configuration and any cleanup warnings.
+
+See [screenshots and capture scope](screenshots/README.md) for the verified UI states. This walkthrough describes how to exercise the application; it does not replace the independent human evaluation needed for release.
+
+## Understanding withheld answers
+
+A missing-evidence response means the application did not establish the requested facts. A validation failure means it could not accept the model's draft. New citation failures distinguish an excerpt that is not exact, a passage outside the supplied evidence, a changed index, and a mismatched current source record. No raw rejected draft is displayed or stored as answer history. Answer diagnostics records a safe reason code.
+
+The `grounded-5` prompt uses a per-request schema that constrains generated passage IDs to the supplied context and clarifies contiguous quoting and explicit version comparisons. Runtime citation validation, separate support review and snapshot checks still apply. A constrained ID is not evidence of semantic support, and quotation failures can still occur. Historical `grounded-4` answers remain readable.
+
+For import/replacement practice, use the [disposable library samples](../samples/library_walkthrough/README.md) in a separate collection. They are not part of the recorded FleetOps evaluation corpus.

@@ -1,3 +1,7 @@
+> October 17 follow-up: the guided user walkthrough is complete, including disposable import, indexing, replacement and deletion. Citation hardening and remaining semantic failures are documented in [the investigation](walkthrough_validation_investigation.md). The user authorized committing and pushing all repository changes; earlier pause/deferred-walkthrough notes below are historical.
+
+> Current status: Milestone 6 portfolio preparation completed October 17, 2026 after the user resumed work. See [Milestone 6 completion](milestone_6_completion.md) and the [guided walkthrough](user_guide.md#guided-fictional-walkthrough). The Phase 5 pause is superseded; documented release blockers remain open. Historical notes follow.
+
 > Current status: Milestone 5 testing/evaluation completed October 16, 2026 with documented release blockers. See [Milestone 5 completion](milestone_5_completion.md). The user requested a pause after milestone 5 and the first GitHub commit/push. Milestone 6 has not started. Full user walkthrough remains deferred. Resume only when requested. Historical notes follow.
 
 > Current status: Milestone 4 completed and verified October 16, 2026. See [Milestone 4 completion](milestone_4_completion.md). Milestones 5 and 6 have not started. Full user walkthrough is deferred until completion. The notes below are historical.

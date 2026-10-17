@@ -21,7 +21,7 @@ The PRD allows milestone 5 to finish with documented blockers that prevent relea
 | AC-015 hostile sources cannot execute/fetch/write | Inert injection canary test, source-as-data prompt boundary, no execution imports/API, loopback transport restrictions, hostile FTS identifier/query test | Pass in tested paths; not a native-code sandbox/security guarantee |
 | AC-016 preinstalled offline operation | Socket-denied fixture pipeline/UI tests and real local models under evaluator's loopback-only Python audit guard | Application-level verification; OS air-gap and separate server traffic not verified |
 | AC-017 engine independent of Streamlit | AST dependency test across all core modules, no Streamlit imports | Pass |
-| AC-018 passing tests and documented limitations | Full pytest, Ruff, strict mypy, dependency audit, completion report | Pass when recorded checks complete; audit findings remain open |
+| AC-018 passing tests and documented limitations | Full pytest, Ruff, strict mypy, dependency audit, completion report | Recorded software checks pass; audit findings remain open |
 
 ## Release blockers
 
