@@ -170,7 +170,7 @@ class IndexRepository:
                     )
                 )
                 table = fts_table(manifest.generation)
-                fts_rows = list(db.execute(f"SELECT passage_id, text FROM {table}"))
+                fts_rows = list(db.execute(f"SELECT passage_id, text FROM {table}"))  # nosec B608
                 if dict(fts_rows) != passages or len(fts_rows) != len(passages):
                     raise ValueError("Keyword generation mismatch")
                 count = db.execute(
@@ -349,7 +349,7 @@ class IndexRepository:
                     passage_id UNINDEXED, text, tokenize = "unicode61 tokenchars '_'"
                 )""")
                 db.executemany(
-                    f"INSERT INTO {table}(passage_id, text) VALUES (?,?)",
+                    f"INSERT INTO {table}(passage_id, text) VALUES (?,?)",  # nosec B608
                     [(p.passage_id, p.text) for p in passages],
                 )
                 db.executemany(
@@ -629,7 +629,7 @@ class IndexRepository:
                 return [
                     (str(row[0]), float(row[1]))
                     for row in db.execute(
-                        f"SELECT passage_id, bm25({fts_table(manifest.generation)}) AS score "
+                        f"SELECT passage_id, bm25({fts_table(manifest.generation)}) AS score "  # nosec B608
                         f"FROM {fts_table(manifest.generation)} WHERE {fts_table(manifest.generation)} MATCH ? "
                         "ORDER BY score, passage_id LIMIT ?",
                         (expression, limit),
